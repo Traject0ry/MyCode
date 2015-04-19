@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<constant name="struts.custom.i18n.resources" value="globalMessages" />
+	<constant name="struts.i18n.encoding" value="utf-8" />
+	<!-- 服务器指定一个临时的路径 否则会上传失败 -->
+	<constant name="struts.multipart.saveDir" value="D:/test" />
+	<constant name="struts.multipart.maxSize" value="30000000"></constant>
+	<package name="default" extends="struts-default">
+		<action name="login" class="LoginAction" method="login">
+			<result name="ok" type="redirect">infoQuery.action</result>
+			<result name="error">/login_error.jsp</result>
+		</action>
+
+		<action name="infoQuery" class="InfoQuery">
+			<result name="ok">/information.jsp</result>
+		</action>
+		<action name="update" class="com.org.SSH.Action.UpdateAction"
+			method="go">
+			<result name="success" type="redirect">infoQuery.action</result>
+		</action>
+		<action name="AndroidLoginAction" class="com.org.SSH.Action.AndroidLoginAction"
+			method="login">
+
+		</action>
+		<action name="AndroidFindUsername" class="com.org.SSH.Action.AndroidFindUsername"
+			method="autoCompleteUsername">
+
+		</action>
+		<action name="AndroidFindCourse" class="com.org.SSH.Action.AndroidFindCourse"
+			method="CourseSpinner">
+
+		</action>
+
+
+
+		<action name="register" class="com.org.SSH.Action.UserAction">
+			<result name="success" type="redirect">/register_ok.jsp</result>
+			<result name="error" type="redirect">/register_error.jsp</result>
+		</action>
+
+		<action name="AndroidUploadAction" class="com.org.SSH.Action.AndroidUploadAction"
+			method="upload">
+			<interceptor-ref name="fileUpload">
+				<param name="maximumSize">524288000</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack" />
+			<!-- 保存路径为当前项目WebRoot/upload -->
+			<param name="savePath">/upload</param>
+			<!-- <result name="success" type="redirect">infoQuery.action</result> 
+				<result name="input">index.html</result> -->
+		</action>
+
+	</package>
+
+</struts>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<!-- 数据库相关配置 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver">
+		</property>
+		<property name="url" value="jdbc:mysql://localhost/checkin">
+		</property>
+		<property name="username" value="root"></property>
+		<property name="password" value="root"></property>
+	</bean>
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.MySQLDialect
+				</prop>
+			</props>
+		</property>
+		<!-- 映射资源位置 -->
+		<property name="configurationClass" value="org.hibernate.cfg.AnnotationConfiguration" />
+		<property name="configLocations" value="/WEB-INF/hibernate.cfg.xml" />
+	</bean>
+
+
+	<!-- 数据库相关配置 -->
+
+
+	<!-- DAO所对应的类的配置 -->
+	<!-- 产生HibernateTemplate -->
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate"
+		scope="singleton">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<!-- DAO所对应的类的配置 -->
+	<bean id="userDao" class="com.org.SSH.DaoImpl.userDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<!-- service对应的类及其所调用的dao类配置 -->
+	<bean id="userService" class="com.org.SSH.Service.UserServiceImpl">
+		<property name="userDao" ref="userDao"></property>
+	</bean>
+
+	<!-- service对应的类及其所调用的dao类配置 -->
+	<bean id="LoginAction" class="com.org.SSH.Action.LoginAction"
+		scope="singleton">
+		<property name="userService" ref="userService"></property>
+	</bean>
+	<bean id="InfoQuery" class="com.org.SSH.Action.InfoQuery" scope="singleton">
+		<property name="userService" ref="userService"></property>
+	</bean>
+	<bean id="UserAction" class="com.org.SSH.Action.UserAction">
+		<property name="userService" ref="userService" />
+	</bean>
+	<bean id="AndroidUploadAction" class="com.org.SSH.Action.AndroidUploadAction">
+		<property name="userService" ref="userService" />
+	</bean>
+	<bean id="UpdateAction" class="com.org.SSH.Action.UpdateAction">
+		<property name="userService" ref="userService" />
+	</bean>
+	<bean id="AndroidLoginAction" class="com.org.SSH.Action.AndroidLoginAction">
+		<property name="userService" ref="userService" />
+	</bean>
+	<bean id="AndroidFindUsername" class="com.org.SSH.Action.AndroidFindUsername">
+		<property name="userService" ref="userService" />
+	</bean>
+	<bean id="AndroidFindCourse" class="com.org.SSH.Action.AndroidFindCourse">
+		<property name="userService" ref="userService" />
+	</bean>
+
+</beans>
+
+
+
+
