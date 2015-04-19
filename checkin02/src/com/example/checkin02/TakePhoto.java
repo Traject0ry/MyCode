@@ -32,6 +32,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * 
+ * @author 张仁杰 3.22
+ */
 public class TakePhoto extends Activity implements OnClickListener {
 	private ImageButton imageButton;
 	private Button uploadButton;
@@ -66,10 +70,15 @@ public class TakePhoto extends Activity implements OnClickListener {
 			TakePhoto();
 			break;
 		case R.id.uploadImage:
-			
 			Parcel parcel = Parcel.obtain();
-			System.out.println("--->>TO_UPLOAD_FILE"+TO_UPLOAD_FILE);
-			System.out.println("--->>picPath"+picPath);
+			System.out.println("--->>TO_UPLOAD_FILE" + TO_UPLOAD_FILE);
+			System.out.println("--->>picPath" + picPath);
+			Bundle bundle = this.getIntent().getExtras();
+			String username = bundle.getString("username");// 接收来自上一个界面携带的bundle中的参数
+			String course = bundle.getString("course");
+			System.out.println("----->>username" + username);
+			parcel.writeString(username);
+			parcel.writeString(course);
 			parcel.writeInt(TO_UPLOAD_FILE);
 			parcel.writeString(picPath);// 向service中传递的数据
 			Parcel reply = Parcel.obtain();// 从service中获取的数据
@@ -80,19 +89,18 @@ public class TakePhoto extends Activity implements OnClickListener {
 				// TODO: handle exception
 				e.printStackTrace();
 			}
-			System.out.println("---3->>" + reply.readInt());
-			System.out.println("---4->>" + reply.readString());
 			break;
-			
 		}
 	}
-@Override
-protected void onStart() {
-	// TODO 自动生成的方法存根
-	super.onStart();
-	Intent intent = new Intent(this, UploadService.class);
-	bindService(intent, connection, Context.BIND_AUTO_CREATE);
-}
+
+	@Override
+	protected void onStart() {
+		// TODO 自动生成的方法存根
+		super.onStart();
+		Intent intent = new Intent(this, UploadService.class);
+		bindService(intent, connection, Context.BIND_AUTO_CREATE);
+	}
+
 	// 建立service的连接
 	public ServiceConnection connection = new ServiceConnection() {
 		@Override
@@ -104,7 +112,7 @@ protected void onStart() {
 		@Override
 		public void onServiceConnected(ComponentName name, IBinder service) {
 			// TODO 自动生成的方法存根
-			localBinder=(localBinder)service;
+			localBinder = (localBinder) service;
 			uploadService = localBinder.getService();
 			System.out.println("---->>conn");
 			// 在Activity中调用此方法后即可得到Service的引用
@@ -138,12 +146,11 @@ protected void onStart() {
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		// TODO 自动生成的方法存根
 		if (requestCode == TAKE_PHOTO) {
-			 try {
-			 Bundle bundle = data.getExtras();
-			 Bitmap bitmap = (Bitmap) bundle.get("data");
-			 imageView.setImageBitmap(bitmap);
-			 } catch(Exception e)
-			{
+			try {
+				Bundle bundle = data.getExtras();
+				Bitmap bitmap = (Bitmap) bundle.get("data");
+				imageView.setImageBitmap(bitmap);// 有的手机不能得到data，使用下面的获取方法
+			} catch (Exception e) {
 				picPath = photoUri.toString().replace("file://", "");
 				Log.i(TAG, "最终选择的图片=" + picPath);
 				txt.setText("文件路径" + picPath);
