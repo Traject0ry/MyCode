@@ -38,7 +38,7 @@ import android.widget.Toast;
  */
 public class TakePhoto extends Activity implements OnClickListener {
 	private ImageButton imageButton;
-	private Button uploadButton;
+	private Button uploadButton, backButton;
 	private TextView txt;
 	private ImageView imageView;
 	public final static int TAKE_PHOTO = 100;
@@ -49,6 +49,7 @@ public class TakePhoto extends Activity implements OnClickListener {
 	private String picPath;
 	private localBinder localBinder;
 	private UploadService uploadService;
+	private Bitmap bm;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -56,10 +57,12 @@ public class TakePhoto extends Activity implements OnClickListener {
 		setContentView(R.layout.activity_take_photo);
 		imageButton = (ImageButton) this.findViewById(R.id.camera);
 		uploadButton = (Button) this.findViewById(R.id.uploadImage);
+		backButton = (Button) this.findViewById(R.id.back);
 		txt = (TextView) this.findViewById(R.id.txt1);
 		imageView = (ImageView) this.findViewById(R.id.imageView);
 		imageButton.setOnClickListener(this);
 		uploadButton.setOnClickListener(this);
+		backButton.setOnClickListener(this);
 	}
 
 	@Override
@@ -90,13 +93,19 @@ public class TakePhoto extends Activity implements OnClickListener {
 				e.printStackTrace();
 			}
 			break;
+		case R.id.back:
+			bm.recycle();
+			Intent intent = new Intent(TakePhoto.this, LoginPage.class);
+			intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			startActivity(intent);
+			break;
 		}
 	}
 
 	@Override
-	protected void onStart() {
+	protected void onResume() {
 		// TODO 自动生成的方法存根
-		super.onStart();
+		super.onResume();
 		Intent intent = new Intent(this, UploadService.class);
 		bindService(intent, connection, Context.BIND_AUTO_CREATE);
 	}
@@ -154,7 +163,7 @@ public class TakePhoto extends Activity implements OnClickListener {
 				picPath = photoUri.toString().replace("file://", "");
 				Log.i(TAG, "最终选择的图片=" + picPath);
 				txt.setText("文件路径" + picPath);
-				Bitmap bm = BitmapFactory.decodeFile(picPath);
+				bm = BitmapFactory.decodeFile(picPath);
 				imageView.setImageURI(photoUri);
 			}
 		}

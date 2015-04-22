@@ -16,7 +16,7 @@ import org.apache.http.util.EntityUtils;
 import android.R.string;
 
 public class HttpUtils {
-	public static final String BASE_URL="http://192.168.1.120:8080/Service_For_Android/";
+	public static final String BASE_URL="http://192.168.1.101:8080/Service_For_Android/";
 	public HttpUtils() {
 		// TODO Auto-generated constructor stub
 		

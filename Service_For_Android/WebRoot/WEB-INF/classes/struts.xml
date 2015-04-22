@@ -17,10 +17,7 @@
 		<action name="infoQuery" class="InfoQuery">
 			<result name="ok">/information.jsp</result>
 		</action>
-		<action name="update" class="com.org.SSH.Action.UpdateAction"
-			method="go">
-			<result name="success" type="redirect">infoQuery.action</result>
-		</action>
+	
 		<action name="AndroidLoginAction" class="com.org.SSH.Action.AndroidLoginAction"
 			method="login">
 

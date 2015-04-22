@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.struts2.components.Bean;
 
 import com.org.SSH.Dao.userDao;
+import com.org.SSH.Entity.Admin;
 import com.org.SSH.Entity.Info;
 import com.org.SSH.Entity.User;
 public class UserServiceImpl implements UserService {
@@ -29,7 +30,7 @@ public class UserServiceImpl implements UserService {
 	public boolean saveUser(User user) {
 		// TODO Auto-generated method stub
 	
-		if (userDao.findByUsername(user.getName()).size()==0) {
+		if (userDao.findByUsername(user.getUsername()).size()==0) {
 			userDao.saveUser(user);
 			return true;
 		}else {
@@ -78,6 +79,12 @@ public class UserServiceImpl implements UserService {
 	public List<String> findAllCourse() {
 		// TODO Auto-generated method stub
 		return userDao.findAllCourse();
+	}
+
+	@Override
+	public List<Admin> findAdmin(String name, String password) {
+		// TODO Auto-generated method stub
+		return userDao.findAdmin(name, password);
 	}
 
 }

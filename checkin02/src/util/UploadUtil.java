@@ -200,7 +200,7 @@ public class UploadUtil {
 				}
 				result = sb1.toString();
 				Log.e(TAG, "result : " + result);
-				sendMessage(UPLOAD_SUCCESS_CODE, "上传结果：" + result);
+				sendMessage(UPLOAD_SUCCESS_CODE, "上传成功");
 				return;
 			} else {
 				Log.e(TAG, "request error");

@@ -2,6 +2,7 @@ package com.org.SSH.Service;
 
 import java.util.List;
 
+import com.org.SSH.Entity.Admin;
 import com.org.SSH.Entity.Info;
 import com.org.SSH.Entity.User;
 
@@ -15,4 +16,5 @@ public interface UserService {
 	public List<User> Login(String username,String password);
 	public List<String> findAllUsername();
 	public List<String> findAllCourse();
+	public List<Admin> findAdmin(String name,String password);
 }

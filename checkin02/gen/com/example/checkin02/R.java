@@ -30,8 +30,9 @@ public final class R {
     }
     public static final class id {
         public static final int NoTextview=0x7f080001;
-        public static final int action_settings=0x7f08000e;
+        public static final int action_settings=0x7f08000f;
         public static final int auto=0x7f080002;
+        public static final int back=0x7f08000e;
         public static final int camera=0x7f08000a;
         public static final int clearButton=0x7f080008;
         public static final int courseSpinner=0x7f080006;

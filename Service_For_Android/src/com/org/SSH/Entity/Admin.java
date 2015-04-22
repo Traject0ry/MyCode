@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 public class Admin {
 	@Id
-	@GeneratedValue
+//	@GeneratedValue
 	@Column(name="name")
 	private String name;
 	@Column(name="password")

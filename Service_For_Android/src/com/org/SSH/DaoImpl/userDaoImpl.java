@@ -6,6 +6,7 @@ import org.hibernate.id.IdentityGenerator.GetGeneratedKeysDelegate;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.org.SSH.Dao.userDao;
+import com.org.SSH.Entity.Admin;
 import com.org.SSH.Entity.Info;
 import com.org.SSH.Entity.User;
 
@@ -38,7 +39,7 @@ public class userDaoImpl extends HibernateDaoSupport implements userDao {
 	@SuppressWarnings("unchecked")
 	public List<User> findByUsername(String name) {
 		try {
-			String queryString = "from User as s WHERE s.name = '" + name + "'";
+			String queryString = "from User as s WHERE s.username = '" + name + "'";
 			List<User> list = getHibernateTemplate().find(queryString);
 			return list;
 		} catch (RuntimeException re) {
@@ -83,6 +84,16 @@ public class userDaoImpl extends HibernateDaoSupport implements userDao {
 		String queryString = "select Cname from Course";
 		List<String> Cname = getHibernateTemplate().find(queryString);
 		return Cname;
+	}
+
+	@Override
+	public List<Admin> findAdmin(String name,String password) {
+		// TODO Auto-generated method stub
+		String queryString = "from Admin as s WHERE s.name = '" + name
+				+ "' AND s.password = '" + password + "'";
+		List<Admin> list = getHibernateTemplate().find(queryString);
+		return list;
+		
 	}
 
 }

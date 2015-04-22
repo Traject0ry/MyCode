@@ -30,7 +30,7 @@
 <body>
 	login error!!
 	<br>账号密码错误<p style="text-indent: 2em; margin-top: 30px;">
-		系统将在 <span id="time">5</span> 秒钟后自动跳转至新网址，如果未能跳转，<a href="/SSH_new/index.html"
+		系统将在 <span id="time">5</span> 秒钟后自动跳转至新网址，如果未能跳转，<a href="/Service_For_Android/index.html"
 			title="点击访问">请点击</a>。
 	</p>
 	<script type="text/javascript">  
@@ -43,7 +43,7 @@
             document.getElementById("time").innerHTML = delay;
         } else {
      clearTimeout(t); 
-            window.location.href = "/SSH_new/index.html";
+            window.location.href = "/Service_For_Android/index.html";
         }        
     } 
 </script>

@@ -62,9 +62,7 @@
 	<bean id="AndroidUploadAction" class="com.org.SSH.Action.AndroidUploadAction">
 		<property name="userService" ref="userService" />
 	</bean>
-	<bean id="UpdateAction" class="com.org.SSH.Action.UpdateAction">
-		<property name="userService" ref="userService" />
-	</bean>
+	
 	<bean id="AndroidLoginAction" class="com.org.SSH.Action.AndroidLoginAction">
 		<property name="userService" ref="userService" />
 	</bean>

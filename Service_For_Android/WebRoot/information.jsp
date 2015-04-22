@@ -56,22 +56,24 @@
 </head>
 
 <body>
-	</table>
+	
 	<center>
-		<h1>简历资讯</h1>
+		<h1>签到详情</h1>
 		<table border="1" width="400">
 			<tr>
 				<th>姓名</th>
-				<th>简历</th>
+				<th>课程</th>
+				<th>签到时间</th>
 				<th>照片</th>
 			</tr>
 
 			<s:iterator value="#request.infoList" id="st">
 				<tr>
-					<td align="center" id="name"><s:property value="#st.name" /></td>
-					<td align="center" width="500" id="information"><s:property
-							value="#st.information" /></td>
-					<td align="center" id="path"><img
+					<td align="center" id="username"><s:property value="#st.username" /></td>
+					<td align="center" id="course"><s:property value="#st.course" /></td>
+					<td align="center" width="500" id="time"><s:property
+							value="#st.time" /></td>
+					<td align="center" id="url"><img
 						src='<s:property value="#st.url" />' height="100" width="100"></td>
 					<td><a href="change.jsp?id=<s:property value='#st.id'/>">更新</a></td>
 
@@ -81,7 +83,7 @@
 	</center>
 	<div id="links_foot">
 		<ul>
-			<li id="links_foot_first"><a href="addInformation.jsp">添加简历信息</a></li>
+			<li id="links_foot_first"><a href="index.html">查看未签到的学生</a></li>
 			<li id="links_foot_first"><a href="index.html">退出登录</a></li>
 		</ul>
 	</div>

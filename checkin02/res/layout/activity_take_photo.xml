@@ -34,36 +34,41 @@
             android:background="@drawable/icon_carme" />
     </RelativeLayout>
 
-
-    
     <TextView
         android:id="@+id/txt1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textColor="#DC143C"
-        android:text="" />
-    
+        android:text=""
+        android:textColor="#DC143C" />
+
     <TextView
         android:id="@+id/uploadImageResult"
         android:layout_width="fill_parent"
         android:layout_height="50dip"
-        android:textColor="#DC143C"
-        android:text="" />
+        android:text=""
+        android:textColor="#DC143C" />
 
-     <Button
-            android:id="@+id/uploadImage"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/btn_m"
-            android:text="立即上传"
-            android:textColor="#ffffffff"
-            android:textSize="16dp" >
-        </Button>
+    <Button
+        android:id="@+id/uploadImage"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/btn_m"
+        android:text="立即上传"
+        android:textColor="#ffffffff"
+        android:textSize="16dp" >
+    </Button>
+
+    <Button
+        android:id="@+id/back"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/btn_m"
+        android:text="返回"
+        android:textColor="#ffffffff"
+        android:textSize="16dp" />
 
 </LinearLayout>
-    
-       
- 
-

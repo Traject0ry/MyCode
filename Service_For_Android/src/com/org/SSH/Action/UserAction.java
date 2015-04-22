@@ -7,23 +7,12 @@ import com.org.SSH.Service.UserService;
 public class UserAction extends ActionSupport {
 
 	private UserService userService;
-	private String name;
+	private String username;
 	private String password;
-	private String qq;
+	private Integer userId;
+	private String name;
+	private String classes;
 
-	public String execute() {
-		System.out.println("in the action");
-		User u = new User();
-		u.setName(name);
-		u.setPassword(password);
-		//u.setQq(qq);
-		boolean flag = userService.saveUser(u);
-		if (flag) {
-			return SUCCESS;
-		}
-		return ERROR;
-	}
-	
 	public UserService getUserService() {
 		return userService;
 	}
@@ -32,20 +21,12 @@ public class UserAction extends ActionSupport {
 		this.userService = userService;
 	}
 
-	public String getQq() {
-		return qq;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setQq(String qq) {
-		this.qq = qq;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getPassword() {
@@ -56,4 +37,43 @@ public class UserAction extends ActionSupport {
 		this.password = password;
 	}
 
+	public Integer getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getClasses() {
+		return classes;
+	}
+
+	public void setClasses(String classes) {
+		this.classes = classes;
+	}
+
+	public String execute() {
+		System.out.println("in the action");
+		User u = new User();
+		u.setName(name);
+		u.setPassword(password);
+		u.setClasses(classes);
+		u.setUsername(username);
+		boolean flag = userService.saveUser(u);
+		if (flag) {
+			return SUCCESS;
+		}
+		return ERROR;
+	}
+	
+	
 }

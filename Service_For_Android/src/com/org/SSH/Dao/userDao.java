@@ -2,6 +2,7 @@ package com.org.SSH.Dao;
 
 import java.util.List;
 
+import com.org.SSH.Entity.Admin;
 import com.org.SSH.Entity.Info;
 import com.org.SSH.Entity.User;
 
@@ -16,6 +17,7 @@ public void updateInfo(Info info);
 public List<Info> findById(int id);
 public List<String> findAllUsername();
 public List<String> findAllCourse();
+public List<Admin> findAdmin(String name,String password);
 	
 
 }
